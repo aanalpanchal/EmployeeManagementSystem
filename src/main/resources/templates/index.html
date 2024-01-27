@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Employee Info</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <h1>
+        Employee List
+    </h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee: ${employeeList}">
+            <th scope="row" th:text="${employee.id}"></th>
+            <td th:text="${employee.firstname}"></td>
+            <td th:text="${employee.lastname}"></td>
+            <td th:text="${employee.emailId}"></td>
+            <td><ul class="list-inline m-0">
+                <li class="list-inline-item">
+                    <a class="btn btn-success btn-sm rounded-0" th:href="@{/editEmployee/{id}(id=${employee.id})}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn btn-danger btn-sm rounded-0" th:href="@{/deleteEmployee/{id}(id=${employee.id})}" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                </li>
+            </ul></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/addEmployee}">Add Employee</a>
+</div>
+</body>
+</html>
